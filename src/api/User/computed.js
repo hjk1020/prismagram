@@ -31,5 +31,5 @@ isSelf: (parent,_,{request}) => {
     return user.id === parentId;
 }
 
-},
+}
 }

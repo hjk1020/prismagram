@@ -7,7 +7,7 @@ type User {
   bio: String
   posts: [Post!]!
   likes: [Like!]!
- Comments: [Comment!]!
+ comments: [Comment!]!
  rooms: [Room!]!
  followers: [User!]! @relation(name: "FollowRelation")
  following: [User!]! @relation(name: "FollowRelation")
@@ -20,14 +20,14 @@ type Post {
  location: String
  caption: String!
  files: [File!]!
- likes: [Like!]!
- Comments: [Comment!]!
+ likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
+ comments: [Comment!]!
 }
 
 type Like {
   id: ID! @id
  user: User!
- post: Post!
+ post: Post @relation(name: "LikeOfPost")
 }
 
 type Comment {
