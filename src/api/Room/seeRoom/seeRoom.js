@@ -1,5 +1,5 @@
 import { prisma } from "../../../../generated/prisma-client";
-import {ROOM_FRAGMENT} from "../../../fragments"
+
 
 
 
@@ -13,7 +13,7 @@ export default {
                 id:user.id
             }});
             if(canSee){
-              return await prisma.room({id}).$fragment(ROOM_FRAGMENT);
+              return await prisma.room({id})
                 
 
             }else{
