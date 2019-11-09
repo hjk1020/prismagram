@@ -16,10 +16,12 @@ const PORT = process.env.PORT || 5000;
 const server = new GraphQLServer({schema,
     context:({request})  =>({request,isAuthenticated})});
 
+    //passport 안에 있는 req.request를 받는다
+
 
 
 server.express.use(logger("dev"));
 server.express.use(authenticateJwt);
-server.start({port:5000}, () =>
+server.start({port:4000}, () =>
 console.log( `Server running localhost:${PORT}`)
 );
