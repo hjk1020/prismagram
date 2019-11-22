@@ -9,13 +9,24 @@ const s3 = new aws.S3({
 })
 
  const upload = multer({
-     dest:"uploads/"
+     storage: multerS3({
+         s3
+     ,
+     bucket:"prismagram7616",
+     metadata: function (req, file, cb) {
+        cb(null, {fieldName: file.fieldname});
+      },
+      key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+      }
+    })
     });
  export const uploadMiddleware = upload.single("file")
 
 export const uploadController = (req,res) => {
-    const {file:{path}} = req;
-   res.json({path})
+    const {file:{location}} = req;
+  
+   res.json({location})
 }
 
 
